@@ -14,7 +14,7 @@ setup(
     author_email="<nobudy@nobudy.xyz>",
     description=DESCRIPTION,
     packages=find_packages(),
-    install_requires=['simplematrixbotlib', 'pyyaml', 'urlextract', 'beautifulsoup4', 'requests', 'urlextract' ],
+    install_requires=['simplematrixbotlib', 'pyyaml', 'urlextract', 'beautifulsoup4', 'requests', 'matrix-nio[e2e]' ],
     keywords=['python', 'matrix', 'bot', 'web scraper'],
     classifiers=[
         "Development Status :: 1 - Planning",
