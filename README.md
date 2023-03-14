@@ -3,9 +3,11 @@
 Dessert bot is a small implementation of the [simple matrix bot lib](https://github.com/i10b/simplematrixbotlib) to be a general purpose matrix chat bot. 
 
 ### Features
+
     Literally the only thing that it does at the moment is send YouTube thumbnails and their title for links that it sees in messages.
     
 ### Installation
+
     At the moment I don't have it as a proper python package so for the time being you'll have to clone this repo and manually set up a python virtual environment.
 
 Clone the repo
@@ -44,6 +46,7 @@ python3 dessertBot.py
 
 
 ### Next steps
+
     - Figure out why it can't relaunch a previous verified session (probably my misusage of the simplematrixbot library)
     - Properly make a python package that can be installed with pip
     - Find a good way to do user configuration
