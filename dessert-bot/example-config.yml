@@ -1,0 +1,9 @@
+#copy this to config.yml for it to function
+config:
+    homeserver: ""
+    username: ""
+    password: ""
+    PREFIX: "!"
+    EncryptionEnabled: True
+    EmojiVerify: True
+    ignore_unverified_devices: True
