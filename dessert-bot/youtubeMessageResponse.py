@@ -20,12 +20,15 @@ async def postThumbnail(room, bot, soup):
     #this needs to become soup
     #write file
     #
+    try:
 
-    data = requests.get(soup.find("meta", property="og:image")["content"], stream = True)
-    with open("thumbnail.jpg", "wb") as f:
+       data = requests.get(soup.find("meta", property="og:image")["content"], stream = True)
+       with open("thumbnail.jpg", "wb") as f:
         shutil.copyfileobj(data.raw, f)
 
-    await bot.api.send_image_message(room.room_id, 'thumbnail.jpg')
+       await bot.api.send_image_message(room.room_id, 'thumbnail.jpg')
+    except:
+       print("Could not parse thumnail: postThumbnail()")
 
     return
 
@@ -37,14 +40,21 @@ async def postTitle(room, bot, soup):
     #s = BeautifulSoup(r.text, "html.parser")
     #title = s.find("meta", itemprop="name")["content"]
     #
-    title = soup.find("meta", itemprop="name")["content"]
-    await bot.api.send_text_message(room_id=room.room_id, message=title, msgtype='m.text')
+    try:
+       title = soup.find("meta", itemprop="name")["content"]
+       await bot.api.send_text_message(room_id=room.room_id, message=title, msgtype='m.text')
+    except:
+       print("Could not parse title: postTitle()")
 
     return
 
 def getSoup(videoLink):
-    r = requests.get(videoLink)
-    s = BeautifulSoup(r.text, "html.parser")
+    s = ""
+    try:
+       r = requests.get(videoLink)
+       s = BeautifulSoup(r.text, "html.parser")
+    except:
+       print("Link cannot be parsed: getSoup()")
     return s
 
 
@@ -54,10 +64,17 @@ async def youtubeResponse(room, bot, message):
    videoLink = containsYoutubeLink(message)
    #now get the soup object to get info from
    #
-   if videoLink:
+
+   try:
       soup = getSoup(videoLink)
 
+      try:
+         await postThumbnail(room, bot, soup)
+         await postTitle(room, bot, soup)
+      except:
+         print("Title or thumbnail is not resolving")
+   except:
+      print("Could not get soup: youtubeResponse()")
       #use soup to send what you want about the video
-      await postThumbnail(room, bot, soup)
-      await postTitle(room, bot, soup)
+
    return
