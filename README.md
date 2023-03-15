@@ -41,7 +41,7 @@ Once you're done with the config run
 python3 dessertBot.py
 ```
 
-#### You will have to remove the crpyto files and session.txt every time you restart the bot. This seems to be an issue with the simplematrixbotlib
+#### You will have to remove the crypto files and session.txt every time you restart the bot. This seems to be an issue with the simplematrixbotlib
 
 
 
